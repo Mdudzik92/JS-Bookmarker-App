@@ -12,12 +12,23 @@ function saveBookmark(e) {
 		url: siteUrl,
 	};
 
-	console.log(bookmark);
+	// Test if bookmarks is null
+	if (localStorage.getItem("bookmarks") === null) {
+		// Init array
+		var bookmarks = [];
+		// Add to array
+		bookmarks.push(bookmark);
+		// Set to localStorage with setItem and JSON stringify.
+		localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+	} else {
+		// Get (fetch) bookmarks from localStorage with getItem and JSON.parse which turns it back into JSON
+		var bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
+		// Add bookmark to array
+		bookmarks.push(bookmark);
+		// Re-set back to localStorage
+		localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+	}
 
 	// Prevent form from submitting
 	e.preventDefault();
 }
-
-// Local storage test. setItem takes in a key and a value
-// localStorage.setItem("test", "Hello World");
-// localStorage.setItem("test2", "Sweet");
