@@ -32,3 +32,32 @@ function saveBookmark(e) {
 	// Prevent form from submitting
 	e.preventDefault();
 }
+
+// Fetch bookmarks
+function fetchBookmarks() {
+	// Get bookmarks from localStorage
+	var bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
+	// Get output id
+	var bookmarksResults = document.getElementById("bookmarksResults");
+
+	// Build output
+	bookmarksResults.innerHTML = "";
+	for (var i = 0; i < bookmarks.length; i++) {
+		var name = bookmarks[i].name;
+		var url = bookmarks[i].url;
+
+		bookmarksResults.innerHTML +=
+			'<div class="well">' +
+			"<h3>" +
+			name +
+			' <a class="btn btn-default" target="_blank" href="' +
+			addhttp(url) +
+			'">Visit</a> ' +
+			" <a onclick=\"deleteBookmark('" +
+			url +
+			'\')" class="btn btn-danger" href="#">Delete</a> ' +
+			"</h3>" +
+			"</div>";
+	}
+}
+fetchBookmarks();
