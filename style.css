@@ -54,6 +54,11 @@ h2 {
 	line-height: 2;
 }
 
+.well {
+	padding: 8px;
+	margin: 10px;
+}
+
 /* Supporting marketing content */
 .marketing {
 	margin: 40px 0;
